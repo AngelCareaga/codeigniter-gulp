@@ -86,7 +86,7 @@ if [ -f gulpfile.js ]; then
       node_modules/.bin/gulp
     )
   fi
-
+  npm ci gulp
   gulp build
 
   export HOME=$OLD_HOME
