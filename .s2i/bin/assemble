@@ -17,7 +17,7 @@ pwd
 
 # Change the npm registry mirror if provided
 if [ -n "$NPM_MIRROR" ]; then
-	npm config set registry $NPM_MIRROR
+  npm config set registry $NPM_MIRROR
 fi
 
 if [ -f composer.json ]; then
@@ -26,13 +26,13 @@ if [ -f composer.json ]; then
   # Install Composer
   TEMPFILE=$(mktemp)
   RETRIES=6
-  for ((i=0; i<$RETRIES; i++)); do
+  for ((i = 0; i < $RETRIES; i++)); do
 
     if [ -z "$COMPOSER_INSTALLER" ]; then
       export COMPOSER_INSTALLER="https://getcomposer.org/installer"
     fi
 
-    echo "Downloading $COMPOSER_INSTALLER, attempt $((i+1))/$RETRIES"
+    echo "Downloading $COMPOSER_INSTALLER, attempt $((i + 1))/$RETRIES"
     curl -o $TEMPFILE $COMPOSER_INSTALLER && break
     sleep 10
   done
@@ -76,10 +76,20 @@ if [ -f gulpfile.js ]; then
   # Install Composer
   TEMPFILE=$(mktemp)
 
-  sudo npm i --global gulp-cli
   npm ci
 
+  OLD_HOME=$HOME
+  export HOME=$OPENSHIFT_REPO_DIR
+  if [ -f "${OPENSHIFT_REPO_DIR}"/Gulpfile.js ]; then
+    (
+      cd "${OPENSHIFT_REPO_DIR}"
+      node_modules/.bin/gulp
+    )
+  fi
+
   gulp build
+
+  export HOME=$OLD_HOME
 
 fi
 
