@@ -77,16 +77,7 @@ if [ -f gulpfile.js ]; then
   TEMPFILE=$(mktemp)
 
   npm ci
-
-  OLD_HOME=$HOME
-  export HOME=$OPENSHIFT_REPO_DIR
-  if [ -f "${OPENSHIFT_REPO_DIR}"/Gulpfile.js ]; then
-    (
-      cd "${OPENSHIFT_REPO_DIR}"
-      node_modules/.bin/gulp
-    )
-  fi
-  npm ci gulp
+  export PATH="$PATH:./node_modules/.bin"
   gulp build
 
   export HOME=$OLD_HOME
