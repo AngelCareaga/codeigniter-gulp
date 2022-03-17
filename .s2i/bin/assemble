@@ -13,7 +13,6 @@ mv /tmp/src/* ./
 fix-permissions ./
 fix-permissions ${HTTPD_CONFIGURATION_PATH}
 
-ls -la
 pwd
 
 # Change the npm registry mirror if provided
@@ -77,6 +76,7 @@ if [ -f gulpfile.js ]; then
   # Install Composer
   TEMPFILE=$(mktemp)
 
+  npm install --global gulp-cli
   npm ci
 
   gulp build
