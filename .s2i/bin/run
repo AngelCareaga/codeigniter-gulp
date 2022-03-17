@@ -3,7 +3,7 @@
 source ${PHP_CONTAINER_SCRIPTS_PATH}/common.sh
 
 export_vars=$(cgroup-limits); export $export_vars
-export DOCUMENTROOT=${DOCUMENTROOT:-/}
+export DOCUMENTROOT=${DOCUMENTROOT:-/build}
 
 # Default php.ini configuration values, all taken
 # from php defaults.
