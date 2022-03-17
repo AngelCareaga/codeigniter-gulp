@@ -76,7 +76,7 @@ if [ -f gulpfile.js ]; then
   # Install Composer
   TEMPFILE=$(mktemp)
 
-  npm install --global gulp-cli
+  npm i gulp-cli
   npm ci
 
   gulp build
