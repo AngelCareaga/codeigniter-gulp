@@ -69,18 +69,20 @@ fi
 
 if [ -f gulpfile.js ]; then
 
+  mkdir -p /tmp/prebuild-src
+  mv ./ /tmp/prebuild-src/
+  cd /tmp/prebuild-src
+  rm -rf /opt/app-root/src/
+
   ls -la
-
   echo "Found 'gulpfile.js', installing dependencies using npm... "
-
-  # Install Composer
-  TEMPFILE=$(mktemp)
 
   npm ci
   export PATH="$PATH:./node_modules/.bin"
   gulp build
 
-  export HOME=$OLD_HOME
+  mkdir -p /opt/app-root/src
+  mv ./build/* /opt/app-root/src/
 
 fi
 
