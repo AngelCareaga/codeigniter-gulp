@@ -70,7 +70,7 @@ fi
 if [ -f gulpfile.js ]; then
 
   mkdir -p /tmp/prebuild-src
-  mv ./ /tmp/prebuild-src/
+  cp ./ /tmp/prebuild-src/
   cd /tmp/prebuild-src
   rm -rf /opt/app-root/src/
 
@@ -82,7 +82,7 @@ if [ -f gulpfile.js ]; then
   gulp build
 
   mkdir -p /opt/app-root/src
-  mv ./build/* /opt/app-root/src/
+  cp ./build/* /opt/app-root/src/
 
 fi
 
