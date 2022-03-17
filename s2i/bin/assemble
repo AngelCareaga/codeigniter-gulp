@@ -4,9 +4,6 @@ set -e
 
 source ${PHP_CONTAINER_SCRIPTS_PATH}/common.sh
 
-ls -la
-pwd
-
 shopt -s dotglob
 echo "---> Installing application source..."
 rm -fR /tmp/src/.git
@@ -15,6 +12,9 @@ mv /tmp/src/* ./
 # Fix source directory permissions
 fix-permissions ./
 fix-permissions ${HTTPD_CONFIGURATION_PATH}
+
+ls -la
+pwd
 
 # Change the npm registry mirror if provided
 if [ -n "$NPM_MIRROR" ]; then
@@ -66,6 +66,21 @@ if [ -f composer.json ]; then
   if [ ! -f composer.lock ]; then
     echo -e "\nConsider adding a 'composer.lock' file into your source repository.\n"
   fi
+fi
+
+if [ -f gulpfile.js ]; then
+
+  ls -la
+
+  echo "Found 'gulpfile.js', installing dependencies using npm... "
+
+  # Install Composer
+  TEMPFILE=$(mktemp)
+
+  npm ci
+
+  gulp build
+
 fi
 
 # post-assemble files

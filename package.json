@@ -9,10 +9,14 @@
   "author": "btalarczyk1@gmail.com",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.26.7",
+    "browser-sync": "2.27.9",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-minify": "^3.1.0",
-    "gulp-sass": "^4.0.2"
+    "gulp-sass": "5.1.0",
+    "sass": "^1.49.9"
+  },
+  "dependencies": {
+    "sass-loader": "^12.6.0"
   }
 }
