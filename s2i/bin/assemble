@@ -1,11 +1,11 @@
 #!/bin/bash
 
-ls -la
-pwd
-
 set -e
 
 source ${PHP_CONTAINER_SCRIPTS_PATH}/common.sh
+
+ls -la
+pwd
 
 shopt -s dotglob
 echo "---> Installing application source..."
