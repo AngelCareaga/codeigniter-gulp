@@ -77,7 +77,7 @@ if [ -f gulpfile.js ]; then
   gulp build
   mv ./* /tmp/src/
   mv /tmp/src/build/* ./
-  ls -la
+  rm -fR /tmp/src/*
 fi
 
 # post-assemble files
