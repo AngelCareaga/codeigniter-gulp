@@ -75,7 +75,9 @@ if [ -f gulpfile.js ]; then
   npm ci
   export PATH="$PATH:./node_modules/.bin"
   gulp build
-
+  mv ./* /tmp/src/
+  mv /tmp/src/build/* ./
+  ls -la
 fi
 
 # post-assemble files
